@@ -4,16 +4,17 @@ class Solution(object):
         :type num: int
         :rtype: int
         """
-        if num!= 9999:
-            num_s = str(num)
-            for digit in range(len(num_s)):
-                if num_s[digit] == '6':
-                    first_part = num_s[:digit]
-                    second_part = num_s[digit + 1: ]
-                    num_s = first_part + '9' + second_part
-                    num = int(num_s)
-                    return num
-        else:
-            return num
+
+        num_s = str(num)
+        for digit in range(len(num_s)):
+            if num_s[digit] == '6':
+                first_part = num_s[:digit]
+                second_part = num_s[digit + 1:]
+                num_s = first_part + '9' + second_part
+                num = int(num_s)
+                break
+        return num
+
+
 if __name__ == '__main__':
-    Solution().maximum69Number(9669)
+    Solution().maximum69Number(69)
