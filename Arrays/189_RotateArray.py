@@ -1,17 +1,21 @@
 """
 Easy
 """
-class Solution(object):
-    def rotate(self, nums, k):
+
+class Solution:
+
+    def rotate(self, nums: List[int], k: int) -> None:
         """
-        :type nums: List[int]
-        :type k: int
-        :rtype: None Do not return anything, modify nums in-place instead.
+        Do not return anything, modify nums in-place instead.
         """
+        temp = []
+        temp.extend(nums)
         for i in range(k):
-            last = nums[len(nums)-1]
-            nums = nums[:len(nums)-1]
-            nums = [last] + nums
+            last = temp[len(temp) - 1]
+            temp = temp[:len(temp) - 1]
+            temp = [last] + temp
+        nums.clear()
+        nums.extend(temp)
         return nums
 
 if __name__ == '__main__':
