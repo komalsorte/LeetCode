@@ -1,4 +1,6 @@
-# EBAY QUESTION
+"""
+EBAY QUESTION 1
+"""
 def reverseDigitsInPairs(n):
     # convert integer to string
     count = 0
@@ -18,5 +20,5 @@ def reverseDigitsInPairs(n):
 
 
 if __name__ == '__main__':
-    n = 12345
+    n = 123456
     reverseDigitsInPairs(n)

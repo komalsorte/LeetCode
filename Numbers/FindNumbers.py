@@ -9,8 +9,6 @@ class Solution(object):
         for i in range(len(nums)):
             if len(str(nums[i])) % 2 == 0:
                 count = count + 1
-
-        print(count)
         return count
 
 
