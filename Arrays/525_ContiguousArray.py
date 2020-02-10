@@ -1,3 +1,6 @@
+"""
+LeetCode - Easy
+"""
 class Solution:
     def findMaxLength(self, nums):
         count_0 = 0
