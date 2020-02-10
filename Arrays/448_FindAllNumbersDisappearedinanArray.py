@@ -1,8 +1,6 @@
 """
-Easy
+Leetcode - Easy
 """
-
-
 class Solution:
     def findDisappearedNumbers(self, nums):
         dictOfnums = {i: 0 for i in nums}
