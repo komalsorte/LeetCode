@@ -1,5 +1,5 @@
 """
-Easy
+LeetCode - Easy
 """
 from typing import List
 import time

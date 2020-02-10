@@ -1,5 +1,5 @@
 """
-Medium
+LeetCode - Medium
 """
 class Solution(object):
     def sortArray(self, nums):

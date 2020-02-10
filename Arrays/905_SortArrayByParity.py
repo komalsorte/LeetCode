@@ -1,5 +1,5 @@
 """
-Easy
+LeetCode - Easy
 """
 class Solution(object):
     def sortArrayByParity(self, A):
