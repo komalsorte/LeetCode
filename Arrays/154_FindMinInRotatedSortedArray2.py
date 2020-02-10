@@ -1,5 +1,5 @@
 """
-Hard
+LeetCode - Hard
 """
 
 
