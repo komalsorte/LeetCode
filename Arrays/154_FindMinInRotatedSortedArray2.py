@@ -1,8 +1,6 @@
 """
 LeetCode - Hard
 """
-
-
 class Solution(object):
     def findMin(self, nums):
         """

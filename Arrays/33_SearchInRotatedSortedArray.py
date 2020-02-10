@@ -1,6 +1,6 @@
 __author__ = 'Komal Atul Sorte'
 """
-Medium
+LeetCode - Medium
 """
 class Solution:
     def search(self, nums, target):
