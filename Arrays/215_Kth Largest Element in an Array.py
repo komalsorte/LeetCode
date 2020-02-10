@@ -1,5 +1,5 @@
 """
-Medium
+LeetCode - Medium
 """
 class Solution:
     def findKthLargest(self, nums, k):
