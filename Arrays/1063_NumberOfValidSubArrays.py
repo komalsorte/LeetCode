@@ -1,5 +1,5 @@
 """
-Hard
+LeetCode - Hard
 """
 import time
 class Solution:
