@@ -1,5 +1,5 @@
 """
-Medium
+LeetCode - Medium
 """
 
 """

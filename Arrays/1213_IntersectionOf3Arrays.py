@@ -1,5 +1,5 @@
 """
-Easy
+LeetCode - Easy
 """
 class Solution(object):
     def arraysIntersection(self, arr1, arr2, arr3):
