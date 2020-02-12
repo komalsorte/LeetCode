@@ -1,3 +1,6 @@
+"""
+LeetCode - Easy
+"""
 class Solution(object):
     def reverseVowels(self, s):
         """

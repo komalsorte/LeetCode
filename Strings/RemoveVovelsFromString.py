@@ -1,3 +1,6 @@
+"""
+LeetCode - Easy
+"""
 class Solution(object):
     def removeVowels(self, S):
         """
