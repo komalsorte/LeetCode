@@ -1,3 +1,6 @@
+"""
+LeetCode - Easy
+"""
 class Solution(object):
     def twoSum(self, nums, target):
         """
