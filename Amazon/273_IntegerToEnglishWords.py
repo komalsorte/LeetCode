@@ -84,7 +84,6 @@ class Solution:
         }
         return switch_case.get(num, '')
 
-
 if __name__ == '__main__':
     num = 10000000
     print(Solution().numberToWords(num))
