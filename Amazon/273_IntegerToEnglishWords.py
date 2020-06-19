@@ -6,20 +6,39 @@ Convert a non-negative integer to its english words representation. Given input 
 
 class Solution:
     def numberToWords(self, num):
-        thousand = False
-        million = False
-        billion = False
-
+        if num == 0:
+            return "Zero"
+        result_full = ""
         num = "{:,}".format(num)
         num_list = num.split(",")
-        for item in num_list:
-            item = int(item) % 10
-            item_string = self.ones(item)
-            item = item % 10
-            item_string = self.tens(item)
-            item = item % 10
-            item_string = self.hundreds(item)
+        num_list.reverse()
 
+        for item in range(len(num_list)):
+            result = ""
+            digits = num_list[item]
+
+            units = int(digits) % 10
+            digits = int(digits) / 10
+            tens = int(digits) % 10
+            digits = int(digits) / 10
+            if tens == 1:
+                result = self.below20(str(tens) + str(units)) + " " + result
+            else:
+                if units != 0:
+                    result = self.ones(units) + " " + result
+                if tens != 0:
+                    result = self.tens(tens) + " " + result
+            if int(digits) % 10 != 0:
+                result = self.ones(int(digits) % 10) + " Hundred " + result
+            if item == 1 and result != "":
+                result = result + "Thousand "
+            if item == 2 and result != "":
+                result = result + "Million "
+            if item == 3 and result != "":
+                result = result + "Billion "
+            result_full = result + result_full
+
+        return result_full.rstrip()
 
     def ones(self, num):
         switch_case = {
@@ -33,11 +52,11 @@ class Solution:
             8: 'Eight',
             9: 'Nine'
         }
-        return switch_case.get(num)
+        return switch_case.get(num, '')
 
     def tens(self, num):
+        num = int(num)
         switch_case = {
-            1: 'Ten',
             2: 'Twenty',
             3: 'Thirty',
             4: 'Forty',
@@ -47,23 +66,25 @@ class Solution:
             8: 'Eighty',
             9: 'Ninety'
         }
-        return switch_case.get(num)
+        return switch_case.get(num, '')
 
     def below20(self, num):
+        num = int(num)
         switch_case = {
-            1: 'Eleven',
-            2: 'Twelve',
-            3: 'Thirteen',
-            4: 'Fourteen',
-            5: 'Fifteen',
-            6: 'Sixteen',
-            7: 'Seventeen',
-            8: 'Eighteen',
-            9: 'Nineteen'
+            10: 'Ten',
+            11: 'Eleven',
+            12: 'Twelve',
+            13: 'Thirteen',
+            14: 'Fourteen',
+            15: 'Fifteen',
+            16: 'Sixteen',
+            17: 'Seventeen',
+            18: 'Eighteen',
+            19: 'Nineteen'
         }
-        return switch_case.get(num)
+        return switch_case.get(num, '')
 
 
 if __name__ == '__main__':
-    num = 222
+    num = 10000000
     print(Solution().numberToWords(num))
