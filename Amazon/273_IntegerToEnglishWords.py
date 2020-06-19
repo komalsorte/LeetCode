@@ -7,8 +7,8 @@ Convert a non-negative integer to its english words representation. Given input 
 class Solution:
     def numberToWords(self, num):
         thousand = False
-        # million = False
-        # billion = False
+        million = False
+        billion = False
 
         num = "{:,}".format(num)
         num_list = num.split(",")
