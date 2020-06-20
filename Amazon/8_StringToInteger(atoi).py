@@ -12,6 +12,16 @@ If no valid conversion could be performed, a zero value is returned.
 """
 
 
+"""
+FAILED TEST CASE:
+"2147483648"
+Output:
+2147483648
+Expected:
+2147483647
+"""
+
+
 class Solution:
     def myAtoi(self, sstr):
         sstr = sstr.strip()
