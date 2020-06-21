@@ -22,6 +22,8 @@ class Solution:
             previous = current
             current = next
             index += 1
+        if index < k:
+            return self.reverseKGroup(previous, index)
         if next is not None:
             head.next = self.reverseKGroup(current, k)
         self.print(previous)
@@ -42,6 +44,6 @@ class Solution:
 
 if __name__ == '__main__':
     ll2 = ListNode(1)
-    ll2.next = ListNode(3, ListNode(4, ListNode(5)))
+    ll2.next = ListNode(3, ListNode(4, ListNode(5, ListNode(6))))
     Solution().print(ll2)
-    print(Solution().reverseKGroup(ll2, 2))
+    print(Solution().reverseKGroup(ll2, 3))
