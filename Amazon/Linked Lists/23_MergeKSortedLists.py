@@ -13,32 +13,50 @@ class ListNode:
         self.next = next
 
 
-class Solution():
+# class Solution():
+#     def mergeKLists(self, lists):
+#         """
+#         :type lists: List[ListNode]
+#         :rtype: ListNode
+#         """
+#
+#         class Wrapper():
+#             def __init__(self, node):
+#                 self.node = node
+#
+#             def __lt__(self, other):
+#                 return self.node.val < other.node.val
+#
+#         head = point = ListNode(0)
+#         q = PriorityQueue()
+#         for l in lists:
+#             if l:
+#                 q.put(Wrapper(l))
+#         while not q.empty():
+#             node = q.get().node
+#             point.next = node
+#             point = point.next
+#             node = node.next
+#             if node:
+#                 q.put(Wrapper(node))
+#         return head.next
+#
+
+
+class Solution:
     def mergeKLists(self, lists):
-        """
-        :type lists: List[ListNode]
-        :rtype: ListNode
-        """
-
-        class Wrapper():
-            def __init__(self, node):
-                self.node = node
-
-            def __lt__(self, other):
-                return self.node.val < other.node.val
-
         head = point = ListNode(0)
         q = PriorityQueue()
-        for l in lists:
+        for idx, l in enumerate(lists):
             if l:
-                q.put(Wrapper(l))
+                q.put((l.val, idx, l))
         while not q.empty():
-            node = q.get().node
-            point.next = node
+            val, idx, node = q.get()
+            point.next = ListNode(val)
             point = point.next
             node = node.next
             if node:
-                q.put(Wrapper(node))
+                q.put((node.val, idx, node))
         return head.next
 
 
@@ -48,6 +66,7 @@ if __name__ == '__main__':
 
     ll2 = ListNode(1)
     ll2.next = ListNode(3, ListNode(4))
+
     ll3 = ListNode(1)
     ll2.next = ListNode(5, ListNode(8))
     lists = [ll1, ll2, ll3]
