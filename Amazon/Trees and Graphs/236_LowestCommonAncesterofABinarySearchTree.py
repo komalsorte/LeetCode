@@ -66,7 +66,7 @@ if __name__ == '__main__':
     root.left = TreeNode(5, TreeNode(6), TreeNode(2, TreeNode(7), TreeNode(4)))
 
     root.right = TreeNode(1, TreeNode(0), TreeNode(8))
-    p = TreeNode(1)
-    q = TreeNode(8)
+    p = TreeNode(7)
+    q = TreeNode(4)
 
     print(Solution().lowestCommonAncestor(root, p, q))
