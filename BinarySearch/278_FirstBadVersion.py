@@ -29,18 +29,15 @@ class Solution:
         :type n: int
         :rtype: int
         """
-        left, right = 1, n + 1
+        left, right = 1, n
         pivot = int((left + right) / 2)
         version = None
 
         while left <= right:
             if isBadVersion(pivot):
-                version = int(pivot)
-                right = pivot
+                version = pivot
+                right = pivot - 1
             else:
-                left = pivot
-            temp = pivot
+                left = pivot + 1
             pivot = int((right + left) / 2)
-            if pivot == temp:
-                break
         return version
