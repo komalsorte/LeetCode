@@ -21,9 +21,9 @@ Output: 0
 
 class Solution:
     def findMin(self, nums):
+        min = float('inf')
         left, right = 0, len(nums) - 1
         pivot = (left + right) // 2
-        min = float('inf')
 
         while left <= right:
             if nums[pivot] < min:
