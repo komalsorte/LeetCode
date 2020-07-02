@@ -23,6 +23,7 @@ Output: -1
 
 
 class Solution:
+
     def search(self, nums, target):
         left, right = 0, len(nums) - 1
         pivot = (left + right) // 2
@@ -30,7 +31,7 @@ class Solution:
         while left <= right:
             if nums[pivot] == target:
                 return pivot
-            if nums[left] < nums[pivot]:
+            if nums[left] <= nums[pivot]:
                 if target < nums[pivot] and target >= nums[left]:
                     right = pivot - 1
                 else:
@@ -42,19 +43,6 @@ class Solution:
                     right = pivot - 1
             pivot = (left + right) // 2
         return -1
-
-    def getRotatedIndex(self):
-        left, right = 0, len(nums) - 1
-        pivot = (left + right) // 2
-
-        while left <= right:
-
-            if nums[pivot] > nums[left] or nums[pivot] < nums[pivot + 1]:
-                left = pivot + 1
-            if nums[pivot] > nums[pivot + 1]:
-                break
-            pivot = (left + right) // 2
-        return pivot + 1
 
 
 if __name__ == '__main__':
