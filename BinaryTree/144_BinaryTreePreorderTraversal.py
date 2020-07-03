@@ -15,7 +15,6 @@ Output: [1,2,3]
 Follow up: Recursive solution is trivial, could you do it iteratively?
 """
 
-
 # Definition for a binary tree node.
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
