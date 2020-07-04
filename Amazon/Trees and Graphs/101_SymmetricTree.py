@@ -38,7 +38,7 @@ class Solution:
             return True
         if subroot_1 is not None and subroot_2 is not None:
             if subroot_1.val == subroot_2.val:
-                print(subroot_1.val, subroot_1.val)
+                print(subroot_1.val, subroot_2.val)
                 return self.isMirror(subroot_1.left, subroot_2.right) and self.isMirror(subroot_1.right, subroot_2.left)
         return False
 
