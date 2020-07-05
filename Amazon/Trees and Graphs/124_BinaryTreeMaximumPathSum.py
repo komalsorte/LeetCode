@@ -36,26 +36,34 @@ class TreeNode:
 
 
 class Solution:
+    max = float('-inf')
+
     def maxPathSum(self, root):
+        if root is None:
+            return 0
+        if root.left is None and root.right is None:
+            return root.val
+        maximumPathSum = self.maxPathSumHelper(root)
+        return maximumPathSum
+
+    def maxPathSumHelper(self, root):
+        if root is None:
+            return 0
+
+        left_sum = self.maxPathSumHelper(root.left)
+        right_sum = self.maxPathSumHelper(root.right)
+        subtree_max = max(left_sum, right_sum)
+        sum = left_sum + right_sum
+        if subtree_max > self.max:
+            self.max = subtree_max
+        return max(subtree_max + root.val, sum + root.val, root.val)
+
+    def maxPathSum1(self, root):
         """
         :type root: TreeNode
-        :rtype: List[List[int]]
+        :rtype: int
         """
-        # maxSum = 0
-    #     if root.left is None and root.right is None:
-    #         return root.val
-    #     else:
-    #         maxSum = self.helper(root, float('-inf'))
-    #         return maxSum
-    #
-    # def helper(self, root, maxSum):
-    #     if root is None:
-    #         return 0
-    #     else:
-    #         leftSum = max(self.helper(root.left, maxSum), maxSum)
-    #         rightSum = max(self.helper(root.right, maxSum), maxSum)
-    #         maxSum = max(maxSum, root.val + leftSum + rightSum, root.val + leftSum, root.val + rightSum)
-    #     return maxSum
+
         def max_gain(node):
             nonlocal max_sum
             if not node:
@@ -113,4 +121,10 @@ if __name__ == '__main__':
     # root = TreeNode(-3)
     # root = TreeNode(-2)
     # root.left = TreeNode(-1)
+    root = TreeNode(-2, TreeNode(-1))
+    root = TreeNode(1)
+    left = TreeNode(-2, TreeNode(1, TreeNode(-1)), TreeNode(3))
+    right = TreeNode(-3, TreeNode(-2))
+    root.left = left
+    root.right = right
     print(Solution().maxPathSum(root=root))
