@@ -41,13 +41,39 @@ class TreeNode:
 
 
 class Solution:
-    tree= None
+    flag = False
+
     def insertIntoBST(self, root, val):
-        self.tree = root
-        self.insertIntoBSTHelper(root, val)
+        if root is None:
+            return TreeNode(val)
+        self.flag = False
+        return self.insertIntoBSTHelper(root, val)
 
     def insertIntoBSTHelper(self, root, val):
         if val < root.val:
-            self.insertIntoBSTHelper(root.left, val)
+            if root.left is None and self.flag == False:
+                root.left = TreeNode(val)
+                self.flag = True
+                return root
+            else:
+                self.insertIntoBSTHelper(root.left, val)
         elif val > root.val:
-            self.insertIntoBSTHelper(root.right, val)
+            if root.right is None and self.flag == False:
+                root.right = TreeNode(val)
+                return root
+            else:
+                self.insertIntoBSTHelper(root.right, val)
+        return root
+
+
+if __name__ == '__main__':
+    root = TreeNode(4)
+    left = TreeNode(2, TreeNode(1), TreeNode(3))
+    right = TreeNode(7, None, TreeNode(8))
+    root.right = right
+    root.left = left
+
+    # root = TreeNode(1, TreeNode(1))
+    val = 5
+    ans = Solution().insertIntoBST(root, val)
+    print(ans)
