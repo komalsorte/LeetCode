@@ -18,20 +18,14 @@ It's guaranteed that the answer is unique, in other words the set of the top k f
 You can return the answer in any order.
 """
 
-
+import collections
 class Solution:
     def topKFrequent(self, nums, k):
-        frequency = dict()
-        for i in range(len(nums)):
-            if nums[i] not in frequency:
-                frequency[nums[i]] = 1
-            else:
-                frequency[nums[i]] = frequency[nums[i]] + 1
-
-        frequency = sorted(frequency.items(), key=lambda x: x[1])
-        print(frequency)
-
-        return [val[0]]
+        nums = collections.Counter(nums).most_common(k)
+        res = []
+        for i in range(k):
+            res.append(nums[i][0])
+        return res
 
 
 if __name__ == '__main__':
