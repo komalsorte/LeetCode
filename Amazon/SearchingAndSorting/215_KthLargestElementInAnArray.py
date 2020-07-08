@@ -22,8 +22,6 @@ class Solution:
 
         return nums[k - 1]
     def findKthLargest_Heapq(self, nums, k):
-        print(nums)
-        heapq.heapify(nums)
         klarge = heapq.nlargest(k, nums)
         return klarge[len(klarge) - 1]
 
@@ -31,4 +29,4 @@ if __name__ == '__main__':
     nums = [3, 2, 1, 5, 6, 4]
     k = 2
 
-    print(Solution().findKthLargest(nums, k))
+    print(Solution().findKthLargest_Heapq(nums, k))
