@@ -35,14 +35,54 @@ class MedianFinder:
         """
         initialize your data structure here.
         """
+        self.numList = list()
 
     def addNum(self, num: int) -> None:
-        pass
+        self.numList.append(num)
+        self.numList = sorted(self.numList)
 
     def findMedian(self) -> float:
-        pass
+        if len(self.numList) != 0:
+            if len(self.numList) % 2 == 0:
+                median = self.numList[len(self.numList) // 2] + self.numList[len(self.numList) // 2 - 1]
+                median = median / 2
+                return median
+            else:
+                median = self.numList[len(self.numList) // 2]
+                return median
+        return
+
 
 # Your MedianFinder object will be instantiated and called as such:
-# obj = MedianFinder()
-# obj.addNum(num)
-# param_2 = obj.findMedian()
+obj = MedianFinder()
+obj.addNum(1)
+obj.addNum(2)
+param_2 = obj.findMedian()
+obj.addNum(3)
+param_2 = obj.findMedian()
+
+# ["MedianFinder","addNum","findMedian","addNum","findMedian","addNum","findMedian","addNum","findMedian","addNum","findMedian","addNum","findMedian","addNum","findMedian","addNum","findMedian","addNum","findMedian","addNum","findMedian","addNum","findMedian"]
+# [[],[6],[],[10],[],[2],[],[6],[],[5],[],[0],[],[6],[],[3],[],[1],[],[0],[],[0],[]]
+
+obj2 = MedianFinder()
+obj2.addNum(6)
+print(obj2.findMedian())
+obj2.addNum(10)
+print(obj2.findMedian())
+obj2.addNum(2)
+print(obj2.findMedian())
+obj2.addNum(6)
+print(obj2.findMedian())
+obj2.addNum(5)
+print(obj2.findMedian())
+obj2.addNum(0)
+print(obj2.findMedian())
+obj2.addNum(6)
+print(obj2.findMedian())
+obj2.addNum(3)
+print(obj2.findMedian())
+obj2.addNum(1)
+print(obj2.findMedian())
+obj2.addNum(0)
+print(obj2.findMedian())
+obj2.addNum(0)
