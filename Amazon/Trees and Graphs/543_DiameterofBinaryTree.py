@@ -25,11 +25,12 @@ class TreeNode:
 
 class Solution:
     max_diameter = 0
-
-    def diameterOfBinaryTree(self, root):
+    root = None
+    def diameterOfBinaryTree(self, root: TreeNode) -> int:
         if root is None:
             return 0
-        self.dfs(root)
+        self.root = root
+        self.max_diameter = self.dfs(root)
         return self.max_diameter - 1
 
     def dfs(self, root):
@@ -39,8 +40,11 @@ class Solution:
         left_subtree = max(self.dfs(root.left), 0)
         right_subtree = max(self.dfs(root.right), 0)
 
-        self.max_diameter = max(left_subtree, right_subtree, 1 + left_subtree + right_subtree)
+        #self.max_diameter = max(left_subtree, right_subtree, 1 + left_subtree + right_subtree)
+        if root == self.root:
+            return 1 + left_subtree + right_subtree
         return 1 + max(left_subtree, right_subtree)
+
 if __name__ == '__main__':
     root = TreeNode(1)
     left = TreeNode(2, TreeNode(4), TreeNode(5))
