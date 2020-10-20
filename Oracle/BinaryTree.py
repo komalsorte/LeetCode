@@ -108,7 +108,6 @@ class Solution:
             else:
                 return False
 
-
         hasPathLeftSubtree = self.hasPathSumHelper(root.left, sum, count + root.val)
         hasPathRightSubtree = self.hasPathSumHelper(root.right, sum, count + root.val)
         return hasPathLeftSubtree or hasPathRightSubtree
@@ -129,7 +128,6 @@ class Solution:
         if root.left is None and root.right is None:
             self.uniValueSubtreesCounter += 1
             return {root.val}
-
 
         leftSet = self.countUnivalSubtreesHelper(root.left)
         rightSet = self.countUnivalSubtreesHelper(root.right)
@@ -161,6 +159,73 @@ class Solution:
         else:
             return False
 
+    def buildTreeInorderPostorder(self, inorder, postorder) -> TreeNode:
+        """
+        106 - Construct Binary Tree from Inorder and Postorder Traversal
+        :param inorder:
+        :param postorder:
+        :return:
+        """
+        if len(inorder) == 0:
+            return None
+        head, inorderRootIndex = self.getRootInorderPostorder(inorder, postorder)
+        root = TreeNode(head)
+        leftSubtree = self.buildTreeInorderPostorder(inorder[: inorderRootIndex], postorder)
+        rightSubtree = self.buildTreeInorderPostorder(inorder[inorderRootIndex + 1:], postorder)
+        root.left = leftSubtree
+        root.right = rightSubtree
+        return root
+
+    def getRootInorderPostorder(self, inorder, postorder):
+        inorderIndexMapper = dict()
+        root = None
+        postIndex = len(postorder) - 1
+
+        for i in range(len(inorder)):
+            inorderIndexMapper[inorder[i]] = i
+
+        while root == None:
+            if postorder[postIndex] in inorderIndexMapper:
+                root = postorder[postIndex]
+                break
+
+            postIndex -= 1
+        return root, inorderIndexMapper[root]
+
+    def buildTreeInorderPreorder(self, preorder, inorder) -> TreeNode:
+        """
+        105. Construct Binary Tree from Preorder and Inorder Traversal
+        :param inorder: 
+        :param preorder: 
+        :return: 
+        """
+        if len(inorder) == 0:
+            return None
+        head, inorderRootIndex = self.getRootInorderPreorder(inorder, preorder)
+        root = TreeNode(head)
+        leftSubtree = self.buildTreeInorderPreorder(preorder, inorder[: inorderRootIndex])
+        rightSubtree = self.buildTreeInorderPreorder(preorder, inorder[inorderRootIndex + 1:])
+        root.left = leftSubtree
+        root.right = rightSubtree
+        return root
+
+        pass
+
+    def getRootInorderPreorder(self, inorder, preorder):
+        inorderIndexMapper = dict()
+        root = None
+        preIndex = 0
+
+        for i in range(len(inorder)):
+            inorderIndexMapper[inorder[i]] = i
+
+        while root == None:
+            if preorder[preIndex] in inorderIndexMapper:
+                root = preorder[preIndex]
+                break
+
+            preIndex += 1
+        return root, inorderIndexMapper[root]
 
 if __name__ == '__main__':
     root = TreeNode(1)
@@ -187,3 +252,11 @@ if __name__ == '__main__':
 
     root = TreeNode(1, TreeNode(2, TreeNode(3), TreeNode(4)), TreeNode(2, None, TreeNode(3)))
     print(Solution().isSymmetric(root))
+
+    inorder = [9, 3, 15, 20, 7]
+    postorder = [9, 15, 7, 20, 3]
+    print(Solution().buildTreeInorderPostorder(inorder, postorder))
+
+    preorder = [3, 9, 20, 15, 7]
+    inorder = [9, 3, 15, 20, 7]
+    print(Solution().buildTreeInorderPreorder(preorder, inorder))
