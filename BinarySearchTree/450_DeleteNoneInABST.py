@@ -48,49 +48,55 @@ class TreeNode:
 
 
 class Solution:
-    def successor(self, root):
-        """
-        One step right and then always left
-        """
+    def __init__(self):
+        self.isPValue = False
+
+    def successor(self, root: 'TreeNode') -> 'TreeNode':
         root = root.right
         while root.left:
             root = root.left
-        return root.val
+        return root
 
-    def predecessor(self, root):
+    def deleteNode(self, root: TreeNode, key: int) -> TreeNode:
         """
-        One step left and then always right
+        450 - Delete Node in a BST
+        :param root:
+        :param key:
+        :return:
         """
-        root = root.left
-        while root.right:
-            root = root.right
-        return root.val
+        if root is None:
+            return
+        if root.val == key:
+            # if 0 child
+            # direct delete
+            if root.left is None and root.right is None:
+                root = None
 
-    def deleteNode(self, root, key):
-        if not root:
-            return None
+            # if 2 children
+            # find in-order successor and replace the node
+            elif root.left and root.right:
+                inorderSuccessor = self.successor(root)
+                root = self.deleteNode(root, inorderSuccessor.val)
+                inorderSuccessor.left = root.left
+                inorderSuccessor.right = root.right
+                root = inorderSuccessor
 
-        # delete from the right subtree
-        if key > root.val:
-            root.right = self.deleteNode(root.right, key)
-        # delete from the left subtree
+            # if 1 child
+            # replace root by child
+            elif root.left or root.right:
+                if root.left:
+                    root = root.left
+                else:
+                    root = root.right
+
+            return root
+
         elif key < root.val:
             root.left = self.deleteNode(root.left, key)
-        # delete the current node
+            return root
         else:
-            # the node is a leaf
-            if not (root.left or root.right):
-                root = None
-            # the node is not a leaf and has a right child
-            elif root.right:
-                root.val = self.successor(root)
-                root.right = self.deleteNode(root.right, root.val)
-            # the node is not a leaf, has no right child, and has a left child
-            else:
-                root.val = self.predecessor(root)
-                root.left = self.deleteNode(root.left, root.val)
-
-        return root
+            root.right = self.deleteNode(root.right, key)
+            return root
 
 
 if __name__ == '__main__':
