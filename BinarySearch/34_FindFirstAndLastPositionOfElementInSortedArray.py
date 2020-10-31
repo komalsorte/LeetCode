@@ -52,7 +52,7 @@ class Solution:
             pivot = (left + right) // 2
         return high
 
-    def searchRange(self, nums: List[int], target: int) -> List[int]:
+    def searchRange(self, nums, target: int):
         if nums == []:
             return [-1, -1]
 
@@ -83,8 +83,8 @@ class Solution:
 
 
 if __name__ == '__main__':
-    nums = [2, 3, 4, 5, 5, 5, 5, 7, 8, 8, 10]
+    nums = [2, 3, 4, 5, 5, 5, 5, 7, 7, 8, 8, 10]
     target = 5
-    nums = [5, 7, 7, 8, 8, 10]
-    target = 8
-    print(search(nums, target))
+    # nums = [5, 7, 7, 8, 8, 10]
+    # target = 8
+    print(Solution().searchRange(nums, target))
